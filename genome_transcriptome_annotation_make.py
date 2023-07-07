@@ -203,7 +203,7 @@ if gff and annotations and intron:
     intron_dataframe = gff_dataframe[::].where(gff_dataframe["annotations_column"] == "intron").dropna()
     intron_start_corrdinates = gff_dataframe[::].where(gff_dataframe["annotations_column"] == "intron").dropna()["start_column"].to_list()
     intron_end_corrdinates = gff_dataframe[::].where(gff_dataframe["annotations_column"] == "intron").dropna()["end_column"].to_list()
-    intron_strand = gff_dataframe[::].where(gff_dataframe["annotations_column"] == "intro").dropna()["start_column"].to_list()
+    intron_strand = gff_dataframe[::].where(gff_dataframe["annotations_column"] == "intro").dropna()["strand_column"].to_list()
     intron_plot = [(i,j,k) for i,j,k in zip(intron_start_corrdinates, intron_end_corrdinates, intron_strand)]
     intronview = GenomeViz()
     intronview.add_feature_track(genome_name, int(''.join(fasta_string_length)))
@@ -260,7 +260,7 @@ if gff and annotations and exon:
     exon_start_corrdinates = gff_dataframe[::].where(gff_dataframe["annotations_column"] == "exon").dropna()["start_column"].to_list()
     exon_end_corrdinates = gff_dataframe[::].where(gff_dataframe["annotations_column"] == "exon").dropna()["end_column"].to_list()
     exon_strand = gff_dataframe[::].where(gff_dataframe["annotations_column"] == "exon").dropna()["strand_column"].to_list()
-    intron_plot = [(i,j,k) for i,j,k in zip(intron_start_corrdinates, intron_end_corrdinates, intron_strand)]
+    intron_plot = [(i,j,k) for i,j,k in zip(exon_start_corrdinates, exon_end_corrdinates, exon_strand)]
     exonview = GenomeViz()
     exonview.add_feature_track(genome_name, int(''.join(fasta_string_length)))
     for i,j in enumerate(exon_plot,1):
